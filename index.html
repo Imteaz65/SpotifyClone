@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spotify</title>
+    <link rel="stylesheet" href="utility.css">
+
+    <link rel="stylesheet" href="spotify.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="spotify.js" defer></script>
+</head>
+<body >
+
+    <div class="container flex bg-black">
+
+        <!-- for left box -->
+        <div class="left">
+            <i class="fa-solid fa-xmark close"></i>
+            <div class="home bg-grey rounded m-1 p-1" style="margin-top: 0px">
+                
+                <img class="invert" src="logo.svg" alt="logo">
+                <ul>
+                    <div ><img class="invert" src="home.svg" alt="home">Home</div>
+                    <div ><img class="invert" src="search.svg" alt="Search">Search</div>
+                    <!-- <li ><img class="invert" src="home.svg" alt="home">Home</li>
+                    <li ><img class="invert" src="search.svg" alt="Search">Search</li> -->
+                </ul>
+            </div>
+            <div class="library bg-grey m-1 p-1 rounded">
+                <div class="heading">
+                    <img class="invert" src="yourLibrary.svg" alt="library">
+                    <h3>
+                        Your Library
+                    </h3>
+                </div>
+
+                <div class="songListBox">
+                    <ul class="songList">
+                        
+                    </ul>
+                </div>
+                
+
+                <div class="footer">
+                    <div class="div"><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
+                    <div class="div"><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
+                    <div class="div"><a href="https://www.spotify.com/jp/privacy-policy/"><span>Privacy Policy</span></a></div>
+                    <div class="div"><a href="https://www.spotify.com/jp/cookies-policy/"><span>Cookies</span></a></div>
+                    <div class="div"><a href="https://www.spotify.com/jp/privacy-policy/#s.3"><span>About Ads</span></a></div>
+                    <div class="div"><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- for right box -->
+        <div class="right bg-grey rounded" >
+            
+            <div class="header">
+                <div class="nav">
+                    <i class="fa-solid fa-bars hamburger" style="font-size: 30px; margin-right: 10px;"></i>
+                    <img class="invert" src="previous.svg" alt="previous">
+                    <img class="invert" src="next.svg" alt="next">
+                    
+                </div>
+                <div class="buttons" style="display: flex;">
+                    <button class="Signup">Signup</button>
+                    <button class="Login">Log in</button>
+                </div>
+            </div>
+
+            <div class="spotify-playlist">
+                <h1>Spotify playlist</h1>
+                <div class="cardContainer" id="albumsContainer">
+
+                    <div class="card" id="AnimalSong">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Animal movie Song</h2>
+                        <p>Trending Animal movie song</p>
+                    </div>
+                    <div class="card" id="partySong">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Party</h2>
+                        <p>Mood for a party here are the party Collections </p>
+                    </div>
+                    <div class="card" id="arijitSingh">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Arijit's</h2>
+                        <p>All Arijits collection</p>
+                    </div>
+                    <div class="card" id="romanticSongs">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Romantic</h2>
+                        <p>Romantic Bollywood Collection</p>
+                    </div>
+                    <div class="card" id="sadSongs">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Sad Collection</h2>
+                        <p>Missing her ? come and recall some memories with her  </p>
+                    </div>
+                    <div class="card" id="oldSongs">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Old BollyWood</h2>
+                        <p>As Someone say's old is Gold here are some gold songs</p>
+                    </div>
+                    <div class="card" id="atifAslam">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Ati fAslam</h2>
+                        <p>get lost in Atif Aslam Voice</p>
+                    </div>
+                    <div class="card" id="sana">
+                        <div class="play">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <img src="./images/card1photo.jfif" alt="cardphoto1">
+                        <h2 class="sub-heading">Sana</h2>
+                        <p>New Singer Sana</p>
+                    </div>
+                    
+                </div>
+                <div class="playbar">
+
+                    <div class="songInfosongDuration">
+                        <div class="song-info"></div>
+                        <div class="songTime"></div>
+                    </div>
+
+                    <ul class="song-buttons">
+                        <i class="fa-solid fa-backward" id="backward"></i>
+                        <!-- <i class="fa-solid fa-pause"></i> -->
+                        <i class="fa-solid fa-play" id="play"></i>
+                        <i class="fa-solid fa-forward" id="forward"></i>
+
+                        <div id="soundMaxWidth" class="sound">
+                            <input type="range" style="width: 70px;">
+                        </div>
+                    </ul>
+                
+                    <div id="soundMediumWidth" class="sound">
+                        <input type="range" style="width: 70px;">
+                    </div>
+                    
+
+                    <div class="seekbar">
+                        <div class="circle">
+
+                        </div>
+                    </div>
+                                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
