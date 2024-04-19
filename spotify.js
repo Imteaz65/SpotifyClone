@@ -30,6 +30,7 @@ function secToMinSec(SongInsec){
 
 const playMusic=function(music){
 
+    // for the very first time when app loads 
     if(firstTimeLoad===true){
 
       currSong.src=music;
@@ -41,39 +42,17 @@ const playMusic=function(music){
       play.classList="fa-solid fa-play";
       
       firstTimeLoad=false;
-
-      console.log("firstTimeLoad")
     }
-
-    // else if(defSong===true){
-
-    //   currSong.load();
-
-    //   currSong.src=music;
-      
-    //   currSong.play();
-    //   let songName;
-    //   songName=`${music.replaceAll("./songs/","")}`;
-    //   document.querySelector(".song-info").innerHTML=songName.replaceAll("128 Kbps.mp3","");
-    
-    //   play.classList="fa-solid fa-pause";
-      
-    // }
   
     else{
-
-        // currSong.pause();
-    console.log("song changed")
-      currSong.load();
-
       currSong.src=music;
 
+      //Add an event Listener 'loadeddata'   
       currSong.onloadeddata=function(){
+        // Once the metadata is loaded, it plays the song
         currSong.play();
       }
-      
-    //   currSong.play();
-  
+        
       // when the songs play it will make the play bar icon to pause
       play.classList="fa-solid fa-pause";
       songName=document.querySelector(".song-info");
@@ -84,9 +63,6 @@ const playMusic=function(music){
 }
   
 
-
-// let songsPath;
-// let songsPath0,songsPath1;
 
 async function getAllSongs(){
 
@@ -107,18 +83,16 @@ async function getAllSongs(){
     sana=['./songs/Kashmir Animal 128 Kbps.mp3']
 
     function loadSongs(path){
-        // window.path
-        // console.log(window[path],"WINDOW PATH")
 
         songs=[...window[path]]
         
         playMusic(songs[0]);
 
-        const ulll=document.querySelector(".songList");
-        ulll.innerHTML="";
+        const songsContainer=document.querySelector(".songList");
+        songsContainer.innerHTML="";
         for(let i=0;i<songs.length;i++){
 
-            ulll.innerHTML +=`<li class='songsName' data-info=${songs[i].replaceAll(' ','-')}> 
+            songsContainer.innerHTML +=`<li class='songsName' data-info=${songs[i].replaceAll(' ','-')}> 
                                 <div class='music-logo'>
                                     <i class='fa-solid fa-music'></i>
                                 </div>
@@ -136,18 +110,16 @@ async function getAllSongs(){
             
         }
 
-        ulll.addEventListener("click",function(event){
+        
+        // add click event on songs container (event delegation) which will trigger the events on clicking child elements
+        songsContainer.addEventListener("click",function(event){
 
             if(event.target.classList.contains("songsName")){
-                console.log(event.target.dataset.info.replaceAll('-',' '));
                 defSong=false;
 
                 playMusic(event.target.dataset.info.replaceAll('-',' '))
             }
             else if(event.target.classList.contains("fa-music") || event.target.classList.contains("songName") || event.target.classList.contains("authorName") || event.target.classList.contains("playButton") ||event.target.classList.contains("fa-play") ){
-
-                console.log(event.target.parentNode.parentNode)
-                console.log(event.target.parentNode.parentNode.dataset.info.replaceAll('-',' '))
 
                 defSong=false;
                 playMusic(event.target.parentNode.parentNode.dataset.info.replaceAll('-',' '));
@@ -157,8 +129,11 @@ async function getAllSongs(){
 
     }
 
+    // default album when page loads  
     loadSongs("AnimalSong")
 
+
+    // add click event to album Container (event Delegation) on clicking on any of the cards will trigger the events
     document.querySelector(".spotify-playlist").addEventListener("click",function(e){
         
         if(e.target.tagName.toLowerCase()==='p' || e.target.tagName.toLowerCase()==='h2' || e.target.tagName.toLowerCase()==="img" || e.target.classList.contains("play")){
@@ -176,14 +151,16 @@ async function getAllSongs(){
 }
 
 
+
 async function main(){
 
-    // songs=await getAllSongs();
     await getAllSongs();
 
+
+    // add click event on play button
     play.addEventListener("click",function(){
 
-        //when .paused will check the song is paused orn not if paused then it will play the current song and change its icon
+        //when .paused will check the song is paused on not if paused then it will play the current song and change its icon else pause the song
         if(currSong.paused){
             
             currSong.play();
@@ -198,7 +175,14 @@ async function main(){
         
     });
     
-    // for the very first time when page loads it will display the song duration witho NaN(will wait for metadata to load when it loads then it will show actual duration of songs)
+
+    // add events 'ended' when song ends it will get trigger
+    currSong.addEventListener('ended',function(){
+        play.classList="fa-solid fa-play";
+    })
+
+
+    // for the very first time when page loads it will display the song duration with NaN(will wait for metadata to load when it loads then it will show actual duration of songs)
     currSong.addEventListener("loadedmetadata",function(){
 
         document.querySelector(".songTime").innerHTML=`${secToMinSec(currSong.currentTime)}:${secToMinSec(currSong.duration)}`;
@@ -206,7 +190,8 @@ async function main(){
     });
 
 
-    //addEventListener to currSong for providing currentTime and duration of currentSong
+
+    //addEventListener 'timeupdate' to currSong for providing currentTime and duration of currentSong
     currSong.addEventListener("timeupdate",function(){
 
         if(defSong===true){
@@ -232,16 +217,10 @@ async function main(){
             
             
         }
-
-        currSong.addEventListener("ended",function(){
-            console.log("ended")
-        })
-        
     });
 
 
 
-    
     // addEventListener to seekbar
     document.querySelector(".seekbar").addEventListener("click",(e)=>{
         
@@ -264,7 +243,6 @@ async function main(){
 
 
 
-
     //addEventListener to hamburger
     const close=document.querySelector(".close");
     close.addEventListener("click",function(){
@@ -272,7 +250,6 @@ async function main(){
         document.querySelector(".left").style.left="-100%";
         
     });
-
 
     
 
@@ -288,7 +265,6 @@ async function main(){
             playMusic(songs[index-1]);
         }
     });
-
 
 
 
@@ -308,13 +284,11 @@ async function main(){
 
 
 
-
     //add evenListener to handle to increase or decrease sound
     document.querySelector(".sound").getElementsByTagName("input")[0].addEventListener("change",function(e){
 
          currSong.volume=parseInt(e.target.value)/100;
     });
-
 
 }
 
